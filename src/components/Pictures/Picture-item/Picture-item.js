@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 
 class PictureItem extends Component {
+    //why constructor ???
     constructor (props){
         super(props);
         this.urlPicture = this.props.urlPicture;
