@@ -10,10 +10,10 @@ class PictureItem extends Component {
   render() {
 
     // get imgPicture if the url of picture exist
-    const imgPicture = this.urlPicture ? <img src = {this.urlPicture}  /> : '';
+    const imgPicture = this.urlPicture ? <img style={{width: '150px', height: '150px'}} className='picture-img' src = {this.urlPicture}  /> : '';
 
     return (
-        <div className="col-md-4">
+        <div className="col-sm-6 col-md-4">
              {imgPicture}
         </div>
     );

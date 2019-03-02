@@ -9,13 +9,13 @@ class PicturesList extends Component {
         pictures: []
       }
 
-     urlSrc = 'https://picsum.photos/150?image=';
+     urlSrc = 'https://picsum.photos';
 
      // limit of number of pictures
      limitList = 20; 
 
   componentDidMount() {
-        axios.get(`http://picsum.photos/list`)
+        axios.get(`${this.urlSrc}/list`)
           .then(res => {
             const pictures = res.data.slice(1,this.limitList - 1);
             this.setState({ pictures });
@@ -24,8 +24,8 @@ class PicturesList extends Component {
 
   render() {
       // Parse List Picutres
-    const pictureListItems = this.state.pictures.map((item, indexElement) => { 
-         return <PictureItem urlPicture = {this.urlSrc + indexElement} /> ;
+    const pictureListItems = this.state.pictures.map((item, index) => { 
+         return <PictureItem key={index} urlPicture = {this.urlSrc + '/' + item.width + '/' + item.height + '?image=' + item.id} /> ;
     });
 
     return (
