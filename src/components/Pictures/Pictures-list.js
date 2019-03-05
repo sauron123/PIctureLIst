@@ -3,21 +3,22 @@ import axios from 'axios';
 import './Picture-item/Picture-item';
 import PictureItem from './Picture-item/Picture-item';
 
+export  const urlSrc = 'https://picsum.photos';
+export  const limitList = 19;
+
 class PicturesList extends Component {
-    x
     state = {
         pictures: []
       }
 
-     urlSrc = 'https://picsum.photos';
 
      // limit of number of pictures
-     limitList = 20; 
+
 
   componentDidMount() {
-        axios.get(`${this.urlSrc}/list`)
+        axios.get(`${urlSrc}/list`)
           .then(res => {
-            const pictures = res.data.slice(1,this.limitList - 1);
+            const pictures = res.data.slice(1,limitList);
             this.setState({ pictures });
           })
       }
@@ -25,7 +26,7 @@ class PicturesList extends Component {
   render() {
       // Parse List Picutres
     const pictureListItems = this.state.pictures.map((item, index) => { 
-         return <PictureItem key={index} urlPicture = {this.urlSrc + '/' + item.width + '/' + item.height + '?image=' + item.id} /> ;
+         return <PictureItem key={`index${index}`} urlPicture = {item} /> ;
     });
 
     return (
