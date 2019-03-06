@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Picture-item/Picture-item';
 import PictureItem from './Picture-item/Picture-item';
+import { Row } from 'react-styled-flexboxgrid';
+import {urlSrc, limitList} from '../../constants';
 
-export  const urlSrc = 'https://picsum.photos';
-export  const limitList = 19;
 
 class PicturesList extends Component {
     state = {
@@ -26,22 +26,22 @@ class PicturesList extends Component {
   render() {
       // Parse List Picutres
     const pictureListItems = this.state.pictures.map((item, index) => { 
-         return <PictureItem key={`index${index}`} urlPicture = {item} /> ;
+         return <PictureItem key={`index${index}`} itemPicture = {item} /> ;
     });
 
     return (
         // render at the same level
         <React.Fragment>
         <h1 className="title-pictures-list"> List of Pictures</h1>
-        <div className="container">
-            <div className="row">
+        <Row>
                 {pictureListItems}
-            </div>
-        </div>
+        </Row>
         </React.Fragment>
     );
   }
 
 }
+
+
 
 export default PicturesList;
