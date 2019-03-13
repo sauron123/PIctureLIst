@@ -17,7 +17,7 @@ class PicturesList extends Component {
   componentDidMount() {
         axios.get(`${urlSrc}/list`)
           .then(res => {
-            const pictures = res.data.slice(1,limitList);
+            const pictures = res.data.slice(0,limitList);
             this.setState({ pictures });
           })
       }
