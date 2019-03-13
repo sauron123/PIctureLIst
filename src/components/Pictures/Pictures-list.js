@@ -17,11 +17,7 @@ class PicturesList extends Component {
   componentDidMount() {
         axios.get(`${urlSrc}/list`)
           .then(res => {
-<<<<<<< HEAD
             const pictures = res.data.slice(0,limitList - 1);
-=======
-            const pictures = res.data.slice(0,limitList);
->>>>>>> d711abbb809ef889ab64f98e5c39b736174acd1e
             this.setState({ pictures });
           })
       }

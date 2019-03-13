@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
 	BrowserRouter as Router,
-	Route,
+	Route
 } from 'react-router-dom'
 import './App.css';
 import PicturesList from './components/Pictures/Pictures-list';
@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return <Router>
 			<div>
-				<Route exact path="/" render={(props) => {
+				<Route exact path="/" render={() => {
 					return <PicturesList />;
 				}} />
 				<Route exact path="/image/:id" render={(props) => {
