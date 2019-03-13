@@ -14,8 +14,7 @@ class App extends Component {
 				<Route exact path="/" render={() => {
 					return <PicturesList />;
 				}} />
-				<Route exact path="/image/:id" render={(props) => {
-
+				<Route exact path="/image/:sami" render={(props) => {
 					return <PictureItemDetail {...props}/>
 				}} />
 			</div>

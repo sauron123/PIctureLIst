@@ -1,40 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { css } from 'emotion';
+import { PICSUM_URL } from '../../constants';
 import { withRouter } from 'react-router-dom';
 
 
-class PictureItem extends Component {
+const calculateUrl = (itemPictureProp) => {
+    return (`${PICSUM_URL}/ ${itemPictureProp.width} / ${itemPictureProp.height} ?image=  ${itemPictureProp.id}`);
+}
 
-  constructor (props){
-    super(props);
-    this.itemPicture = this.props.itemPicture;
-    this.urlPicture = 'https://picsum.photos' + '/' + this.itemPicture.width + '/' + this.itemPicture.height + '?image=' + this.itemPicture.id; 
+const goToDetailPicture = (itemPictureProp, history) => {
+  history.push({
+    pathname: `/image/${itemPictureProp.id}`,
+    // search: '?id=' + this.itemPicture.id,
+    state : { urlPicture: calculateUrl(itemPictureProp),
+             pictureName: itemPictureProp.filename,
+             author: itemPictureProp.author }
+  });
+}
 
-  }
-  goToDetailPicture = () => {
-    this.props.history.push({
-      pathname: `/image/${this.itemPicture.id}`,
-      // search: '?id=' + this.itemPicture.id,
-      state: { urlPicture: this.urlPicture,
-               pictureName: this.itemPicture.filename,
-               author: this.itemPicture.author }
-    });
-  }
+const styleImg  = {
+    padding: '25px',
+    margin: '30px 0px',
+    width: '150px',
+    height: '150px',
+    cursor: 'pointer'
+};
 
-  render() {
-    
-    // get imgPicture if the url of picture exist
-    const imgPicture = this.itemPicture ? <img style={{width: '150px', height: '150px'}} className='picture-img'
-     src = {this.urlPicture} 
-    alt = {this.itemPicture.filename}
-    onClick = {this.goToDetailPicture} /> : '';
 
+const  PictureItem = (props) => {
+  let {history} = props;
     return (
-        <div className="col-sm-6 col-md-4">
-             {imgPicture}
-        </div>
+        props.itemPicture ?  <img   className={css(styleImg)} alt="" src={calculateUrl(props.itemPicture)} onClick = {() =>{ goToDetailPicture(props.itemPicture, history )}} /> :''
     );
-  }
-
 }
 
 export default withRouter (PictureItem) ;

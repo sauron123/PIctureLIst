@@ -6,6 +6,7 @@ class PictureItemDetail extends Component {
   
 
   render() {
+    console.log(this.props)
       
     // info picture
     let {urlPicture, pictureName, author} = this.props.location.state;
