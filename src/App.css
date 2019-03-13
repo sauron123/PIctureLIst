@@ -6,4 +6,20 @@
 
 .picture-img {
   margin: 30px 0px;
+  cursor: pointer;
+}
+
+.picture-detail-wrapper{
+   margin: 10px 50px 10px 150px;
+   padding: 10px 50px 10px 150px;
+}
+
+.author-detail {
+    text-align: center;
+    line-height: 50px;     
+}
+
+.author-detail .author-detail-name {
+    color : #336BFF;
+    font-weight: 200px;
 }

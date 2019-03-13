@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Picture-item';
 import PictureItem from './Picture-item';
+import { withRouter } from 'react-router-dom';
 
 import {urlSrc, limitList} from '../../constants';
 
@@ -11,7 +12,6 @@ class PicturesList extends Component {
       }
 
 
-     // limit of number of pictures
 
 
   componentDidMount() {
@@ -43,4 +43,4 @@ class PicturesList extends Component {
 
 }
 
-export default PicturesList;
+export default withRouter (PicturesList) ;
