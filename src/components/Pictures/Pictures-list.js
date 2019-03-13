@@ -12,17 +12,20 @@ class PicturesList extends Component {
       }
 
 
-
+  
 
   componentDidMount() {
         axios.get(`${urlSrc}/list`)
           .then(res => {
-            const pictures = res.data.slice(1,limitList);
+            const pictures = res.data.slice(0,limitList - 1);
             this.setState({ pictures });
           })
       }
 
   render() {
+
+
+    
       // Parse List Picutres
     const pictureListItems = this.state.pictures.map((item, index) => { 
          return <PictureItem key={`index${index}`} itemPicture = {item} /> ;

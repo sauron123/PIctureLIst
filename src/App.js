@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
 	BrowserRouter as Router,
 	Route,
-	Link
 } from 'react-router-dom'
 import './App.css';
 import PicturesList from './components/Pictures/Pictures-list';
