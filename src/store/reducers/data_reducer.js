@@ -3,7 +3,8 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    pictures : []
+    pictures : [],
+    pictureDetail : null
 };
 
 
@@ -13,6 +14,11 @@ const dataReducer = (state = initialState, action) => {
             return {
                 ...state,
                 pictures : action.payload
+            };
+         case actionTypes.FIND_PICTURE:
+            return {
+                ...state,
+                pictureDetail : action.payload
             };
         default:
             return state;

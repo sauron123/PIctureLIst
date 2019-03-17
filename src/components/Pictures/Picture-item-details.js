@@ -4,33 +4,31 @@ import Heading from "../text/Heading";
 import SubHeading from "../text/SubHeading";
 
 import { connect } from 'react-redux';
-import {postsFetchData} from '../../store/actions/data_action';
+import {postsFetchData, getPictureDetail} from '../../store/actions/data_action';
 
 class PictureItemDetail extends Component {
 
-    state = {
-        Picture:null
-    };
+
 
     
 
     componentDidMount() {
             let id = this.props.match.params.id;
             let pictures = this.props.fieldData.pictures;
-            if (pictures.length === 0)
+            if (pictures.length ===0)
             this.props.postsFetchData();
 
             const found = this.findPicture(pictures, id);
-            this.setState({  Picture : found });
+            this.props.getPictureDetail(found);
         
     };
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.fieldData !== this.props.fieldData)
+        if (prevProps.fieldData.pictures !== this.props.fieldData.pictures)
        {    let  id = this.props.match.params.id;
             let pictures = this.props.fieldData.pictures;
-            this.setState({ Picture: this.findPicture(pictures, id)})
-    }
+            const found = this.findPicture(pictures, id);
+            this.props.getPictureDetail(found);    }
     }
 
     findPicture = (PictureList, id) => {
@@ -40,22 +38,22 @@ class PictureItemDetail extends Component {
 
     render() {
 
-        if (!this.state.Picture) return null; //spinner loading
+        if (!this.props.fieldData.pictureDetail) return null; //spinner loading
    // console.log(this.props)
       
     // info picture
-    //let {urlPicture, pictureName, author} = this.props.location.state;
+    let {author} = this.props.fieldData.pictureDetail;
 
     return (
         <div className={css(styles.pictureWrapper)}>
                 <span className={css(styles.infoWrapper)}>
                       <Heading>Author : </Heading>
 
-                          <SubHeading>{this.state.Picture.author}</SubHeading>
+                          <SubHeading>{author}</SubHeading>
 
                 </span>
             <img className={css(styles.imgStyle)}
-                 src={calculateUrl2(this.state.Picture)}
+                 src={calculateUrl2(this.props.fieldData.pictureDetail)}
                 // src=return (`${PICSUM_URL}/${itemPictureProp.width}/${itemPictureProp.height}?image=${itemPictureProp.id}`);
                  alt ="" />
         </div>
@@ -76,7 +74,7 @@ const mapStateToProps = state => {
 //     }
 // }
 
-export default connect(mapStateToProps, {postsFetchData})(PictureItemDetail);
+export default connect(mapStateToProps, {postsFetchData, getPictureDetail})(PictureItemDetail);
 const styles = {
     pictureWrapper: {
         marginLeft: '10px 50px 10px 150px',

@@ -10,3 +10,11 @@ export const postsFetchData = () => dispatch => {
          dispatch({ type: types.LOADING_POSTS, payload: pictures })
        })
   }
+
+export const getPictureDetail = (Picture) => dispatch => {
+    
+    return dispatch ({
+        type: types.FIND_PICTURE,
+        payload: Picture
+    })
+}
