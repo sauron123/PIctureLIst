@@ -12,11 +12,24 @@ const goToDetailPicture = (itemPictureProp, history) => {
   history.push({
     pathname: `/image/${itemPictureProp.id}`,
     // search: '?id=' + this.itemPicture.id,
-    state : { urlPicture: calculateUrl(itemPictureProp),
-             pictureName: itemPictureProp.filename,
-             author: itemPictureProp.author }
   });
-}
+};
+
+
+
+const  PictureItem = (props) => {
+  let {history} = props;
+    return (
+        props.itemPicture ?  <img
+            className={css(styleImg)}
+            alt="" src={calculateUrl(props.itemPicture)}
+            onClick = {() =>{
+                goToDetailPicture(props.itemPicture, history )}} /> :''
+    );
+};
+
+export default withRouter (PictureItem) ;
+
 
 const styleImg  = {
     padding: '25px',
@@ -25,13 +38,3 @@ const styleImg  = {
     height: '150px',
     cursor: 'pointer'
 };
-
-
-const  PictureItem = (props) => {
-  let {history} = props;
-    return (
-        props.itemPicture ?  <img   className={css(styleImg)} alt="" src={calculateUrl(props.itemPicture)} onClick = {() =>{ goToDetailPicture(props.itemPicture, history )}} /> :''
-    );
-}
-
-export default withRouter (PictureItem) ;
