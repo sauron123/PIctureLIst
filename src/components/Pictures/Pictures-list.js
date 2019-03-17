@@ -1,34 +1,28 @@
 import React, { Component } from 'react';
 import PictureItem from './Picture-item';
 import { css } from 'emotion';
-import getImage from '../../utils/utils'
 import  Heading  from '../text/Heading'
 import { withRouter } from 'react-router-dom';
-import {PICSUM_URL, LIMIT_LIST} from '../../constants';
 
-
+import { connect } from 'react-redux';
+import {postsFetchData} from '../../store/actions/data_action';
 
 class PicturesList extends Component {
-    state = {
-        pictures: []
-    }
+
 
     componentDidMount() {
 
-        getImage().then(res => {
-            const pictures = res.data.slice(1,LIMIT_LIST);
-            this.setState({ pictures });
-        })
+       this.props.postsFetchData();
     }
 
 
 
     render() {
         // Parse List Picutres
-        const pictureListItems = this.state.pictures.map((item, index) => {
+        const pictureListItems = this.props.fieldData.pictures.map((item, index) => {
             return <PictureItem key={index} itemPicture = {item} history={this.props.history}/> ;
         });
-
+       
         return (
 
             <React.Fragment>
@@ -47,7 +41,20 @@ class PicturesList extends Component {
 }
 
 
-export default withRouter (PicturesList) ;
+const mapStateToProps = state => {
+    return {
+        fieldData: state.fieldData
+    }
+};
+
+// const mapDispatchToProps = dispatch => {
+//     return {
+//        postsFetchData
+
+//     }
+// }
+
+export default withRouter(connect(mapStateToProps, {postsFetchData})(PicturesList));
 
 const styles = {
     fontStyle :{

@@ -1,0 +1,1 @@
+export const LOADING_POSTS = 'LOADING_POSTS';
