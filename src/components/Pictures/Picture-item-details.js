@@ -9,31 +9,24 @@ import {postsFetchData, getPictureDetail} from '../../store/actions/data_action'
 class PictureItemDetail extends Component {
 
 
-
-    
-
     componentDidMount() {
             let id = this.props.match.params.id;
             let pictures = this.props.fieldData.pictures;
             if (pictures.length ===0)
             this.props.postsFetchData();
 
-            const found = this.findPicture(pictures, id);
-            this.props.getPictureDetail(found);
+            this.props.getPictureDetail(pictures, id);    }
         
-    };
+
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.fieldData.pictures !== this.props.fieldData.pictures)
        {    let  id = this.props.match.params.id;
             let pictures = this.props.fieldData.pictures;
-            const found = this.findPicture(pictures, id);
-            this.props.getPictureDetail(found);    }
+            this.props.getPictureDetail(pictures, id);    }
     }
 
-    findPicture = (PictureList, id) => {
-        return (PictureList).find(x => x.id === parseInt(id));
-    }
+
 
 
     render() {

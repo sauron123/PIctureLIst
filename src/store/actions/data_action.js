@@ -2,6 +2,8 @@ import * as types from "./actionTypes";
 import getImage from '../../utils/utils'
 import {LIMIT_LIST} from '../../constants';
 
+
+
 export const postsFetchData = () => dispatch => {
   
     return   getImage().then(res => {
@@ -11,10 +13,15 @@ export const postsFetchData = () => dispatch => {
        })
   }
 
-export const getPictureDetail = (Picture) => dispatch => {
-    
+// Filter Picture
+const findPicture = (PictureList, id) => {
+
+    return (PictureList).find(x => x.id === parseInt(id));
+}
+
+export const getPictureDetail = (PictureList, id) => dispatch => {
     return dispatch ({
         type: types.FIND_PICTURE,
-        payload: Picture
+        payload: findPicture(PictureList, id)
     })
 }
