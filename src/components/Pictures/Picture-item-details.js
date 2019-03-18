@@ -4,39 +4,25 @@ import Heading from "../text/Heading";
 import SubHeading from "../text/SubHeading";
 
 import { connect } from 'react-redux';
-import {postsFetchData, getPictureDetail} from '../../store/actions/data_action';
+import { postsFetchData } from '../../store/actions/data_action';
+import selectImageById from '../../store/selectors/selectImageById';
+
 
 class PictureItemDetail extends Component {
 
 
     componentDidMount() {
-            let id = this.props.match.params.id;
-            let pictures = this.props.fieldData.pictures;
-            if (pictures.length ===0)
-            this.props.postsFetchData();
-
-            this.props.getPictureDetail(pictures, id);    }
-        
-
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.fieldData.pictures !== this.props.fieldData.pictures)
-       {    let  id = this.props.match.params.id;
-            let pictures = this.props.fieldData.pictures;
-            this.props.getPictureDetail(pictures, id);    }
+        this.props.postsFetchData();
     }
-
-
 
 
     render() {
 
-        if (!this.props.fieldData.pictureDetail) return null; //spinner loading
-   // console.log(this.props)
+        if (!this.props.getPictureDetail) return null; //spinner loading
+
       
     // info picture
-    let {author} = this.props.fieldData.pictureDetail;
-
+        let author = this.props.getPictureDetail.author ;
     return (
         <div className={css(styles.pictureWrapper)}>
                 <span className={css(styles.infoWrapper)}>
@@ -46,7 +32,7 @@ class PictureItemDetail extends Component {
 
                 </span>
             <img className={css(styles.imgStyle)}
-                 src={calculateUrl2(this.props.fieldData.pictureDetail)}
+                 src={calculateUrl2(this.props.getPictureDetail)}
                 // src=return (`${PICSUM_URL}/${itemPictureProp.width}/${itemPictureProp.height}?image=${itemPictureProp.id}`);
                  alt ="" />
         </div>
@@ -54,9 +40,13 @@ class PictureItemDetail extends Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+    let  id = ownProps.match.params.id;
+    const getPictureDetail = selectImageById(state.fieldData.pictures, id);
+
     return {
-        fieldData: state.fieldData
+        fieldData: state.fieldData,
+        getPictureDetail : getPictureDetail
     }
 };
 
@@ -67,7 +57,7 @@ const mapStateToProps = state => {
 //     }
 // }
 
-export default connect(mapStateToProps, {postsFetchData, getPictureDetail})(PictureItemDetail);
+export default connect(mapStateToProps, {postsFetchData})(PictureItemDetail);
 const styles = {
     pictureWrapper: {
         marginLeft: '10px 50px 10px 150px',
