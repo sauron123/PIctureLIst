@@ -4,6 +4,7 @@ import { PICSUM_URL } from '../../constants';
 import { withRouter } from 'react-router-dom';
 
 
+
 const calculateUrl = (itemPictureProp) => {
     return (`${PICSUM_URL}/ ${itemPictureProp.width} / ${itemPictureProp.height} ?image=  ${itemPictureProp.id}`);
 }
@@ -18,11 +19,14 @@ const goToDetailPicture = (itemPictureProp, history) => {
 
 
 const  PictureItem = (props) => {
-  let {history} = props;
+   let {history} = props;
+
     return (
-        props.itemPicture ?  <img
+        props.itemPicture ?
+            <img
             className={css(styleImg)}
-            alt="" src={calculateUrl(props.itemPicture)}
+            alt=""
+            src={calculateUrl(props.itemPicture)}
             onClick = {() =>{
                 goToDetailPicture(props.itemPicture, history )}} /> :''
     );
@@ -36,5 +40,6 @@ const styleImg  = {
     margin: '30px 0px',
     width: '150px',
     height: '150px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)'
 };

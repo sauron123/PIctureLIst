@@ -7,35 +7,92 @@ import { connect } from 'react-redux';
 import { postsFetchData } from '../../store/actions/data_action';
 import selectImageById from '../../store/selectors/selectImageById';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import StarRatingComponent from 'react-star-rating-component';
+
+
 
 class PictureItemDetail extends Component {
 
-
+state = {
+    valueSelected : 'black',
+    rating: 1
+};
     componentDidMount() {
         this.props.postsFetchData();
     }
 
+    onStarClick(nextValue, prevValue, name) {
+        console.log('rating',this.state.rating)
+        this.setState({rating: nextValue});
+
+    };
 
     render() {
 
+
+    const { rating } = this.state;
+
+console.log( 'console',this.state.valueSelected);
+
+        function handleClick() {
+
+
+                this.setState((state) => {
+                    if ( this.state.valueSelected !=='red ') {
+                        return {valueSelected: 'red'};
+                    }
+            });
+        }
+
+
+
+
+
+
         if (!this.props.getPictureDetail) return null; //spinner loading
+
 
       
     // info picture
         let author = this.props.getPictureDetail.author ;
     return (
+
         <div className={css(styles.pictureWrapper)}>
-                <span className={css(styles.infoWrapper)}>
+            <div className={css(styles.card)} >
+
                       <Heading>Author : </Heading>
 
                           <SubHeading>{author}</SubHeading>
 
-                </span>
+
+       < div className={css`position: relative;`} >
             <img className={css(styles.imgStyle)}
                  src={calculateUrl2(this.props.getPictureDetail)}
-                // src=return (`${PICSUM_URL}/${itemPictureProp.width}/${itemPictureProp.height}?image=${itemPictureProp.id}`);
                  alt ="" />
+
+         <div className={css(styles.container)} >
+             <div className={css(styles.organize1)} >
+                <FontAwesomeIcon  onClick={handleClick.bind(this)}
+                                  icon={faHeart}
+                                  color={ this.state.valueSelected} size="lg" />
+             </div>
+
+           <div className={css(styles.organize2)} >
+                <StarRatingComponent
+                    name="rate1"
+                    starCount={5}
+                    value={rating}
+                    onStarClick={this.onStarClick.bind(this)}
+                />
+           </div>
+
+         </div>
+         </div>
         </div>
+        </div>
+
     );
     }
 }
@@ -76,8 +133,27 @@ const styles = {
         display: 'block',
         marginLeft: 'auto',
         marginRight: 'auto',
-        width: '100%',
-        maxWidth: '100%'
+        width: '50%',
+        maxWidth: '50%'
+    },
+    card: {
+        boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+        transition: '0.3'
+    },
+    container: {
+        padding: '2px 16px'
+    },
+    organize1: {
+        position: 'absolute',
+        bottom: '8px',
+        right: '16px',
+        fontSize: 'calc(14px + (40 - 5) * ((100vw - 300px) / (1600 - 300)))'
+    },
+    organize2: {
+        position: 'absolute',
+        bottom: '8px',
+        left: '16px',
+        fontSize: 'calc(14px + (40 - 5) * ((100vw - 300px) / (1600 - 300)))'
     }
 };
 
