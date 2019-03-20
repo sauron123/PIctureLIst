@@ -2,6 +2,9 @@ import React from 'react';
 import { css } from 'emotion';
 import { PICSUM_URL } from '../../constants';
 import { withRouter } from 'react-router-dom';
+import StarRatingComponent from "react-star-rating-component";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHeart} from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -23,12 +26,28 @@ const  PictureItem = (props) => {
 
     return (
         props.itemPicture ?
-            <img
-            className={css(styleImg)}
-            alt=""
-            src={calculateUrl(props.itemPicture)}
-            onClick = {() =>{
-                goToDetailPicture(props.itemPicture, history )}} /> :''
+            <span className={css(container)}>
+                <img
+                    className={css(styleImg)}
+                    alt={props.itemPicture.valueSelected}
+                    src={calculateUrl(props.itemPicture)}
+                    onClick = {() =>{
+                        goToDetailPicture(props.itemPicture, history )}} />
+                <div className={css(favBlock)} >
+                <StarRatingComponent
+                    name="rate1"
+                    starCount={5}
+                    value={(typeof props.itemPicture.rating == "undefined" ? 0 : props.itemPicture.rating)}
+
+                />
+                </div>
+
+ <div className={css(favBlock1)} >
+                <FontAwesomeIcon
+                    icon={faHeart}
+                    color={(typeof props.itemPicture.valueSelected == "undefined" ? 'black' : props.itemPicture.valueSelected)} size="md" />
+
+              </div> </span>  :''
     );
 };
 
@@ -43,3 +62,32 @@ const styleImg  = {
     cursor: 'pointer',
     boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)'
 };
+// const card = {
+//     boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+//     transition: '0.3'
+// };
+
+const container  = {
+    position: 'relative'
+};
+
+const favBlock =  {
+    position: 'absolute',
+    bottom: '20px',
+    right: '20px',
+    backgroundColor: 'white',
+    color: 'white',
+    paddingLeft: '20px',
+    paddingRight: '20px'
+};
+
+const favBlock1 =  {
+    position: 'absolute',
+
+
+    backgroundColor: 'white',
+    color: 'white',
+    bottom: '20px',
+    left: '20px'
+};
+

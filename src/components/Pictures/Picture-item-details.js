@@ -42,6 +42,7 @@ class PictureItemDetail extends Component {
     return (
 
         <div className={css(styles.pictureWrapper)}>
+            <div className={css(styles.container)} >
             <div className={css(styles.card)} >
                         <button type="button" onClick={this.goBack.bind(this)}>Return</button>
                       <Heading>Author : </Heading>
@@ -54,20 +55,22 @@ class PictureItemDetail extends Component {
                  src={calculateUrl2(this.props.getPictureDetail)}
                  alt ="" />
 
-         <div className={css(styles.container)} >
-             <div className={css(styles.organize1)} >
-                <FontAwesomeIcon  onClick={() => {this.props.ChangeFavori(this.props.fieldData.pictures, this.props.match.params.id)}}
-                                  icon={faHeart}
-                                  color={(typeof this.props.getPictureDetail.valueSelected == "undefined" ? 'black' : this.props.getPictureDetail.valueSelected)} size="lg" />
-             </div>
+           <div className={css(styles.favBlock)} >
+               <StarRatingComponent
+                   name="rate1"
+                   starCount={5}
+                   value={(typeof this.props.getPictureDetail.rating == "undefined" ? 1 : this.props.getPictureDetail.rating)}
+                   onStarClick={this.onStarClick.bind(this)}
+               />
 
-           <div className={css(styles.organize2)} >
-                <StarRatingComponent
-                    name="rate1"
-                    starCount={5}
-                    value={(typeof this.props.getPictureDetail.rating == "undefined" ? 1 : this.props.getPictureDetail.rating)}
-                    onStarClick={this.onStarClick.bind(this)}
-                />
+           </div>
+           <div className={css(styles.favBlock1)} >
+
+                   <FontAwesomeIcon  onClick={() => {this.props.ChangeFavori(this.props.fieldData.pictures, this.props.match.params.id)}}
+                                     icon={faHeart}
+                                     color={(typeof this.props.getPictureDetail.valueSelected == "undefined" ? 'black' : this.props.getPictureDetail.valueSelected)} size="lg" />
+
+
            </div>
 
          </div>
@@ -123,7 +126,7 @@ const styles = {
         transition: '0.3'
     },
     container: {
-        padding: '2px 16px'
+        position: 'relative'
     },
     organize1: {
         position: 'absolute',
@@ -136,8 +139,28 @@ const styles = {
         bottom: '8px',
         left: '16px',
         fontSize: 'calc(14px + (40 - 5) * ((100vw - 300px) / (1600 - 300)))'
-    }
+    },
+    favBlock : {
+        position: 'absolute',
+        bottom: '20px',
+        right: '20px',
+        backgroundColor: 'white',
+        color: 'white',
+        paddingLeft: '20px',
+        paddingRight: '20px'
+    },
+    favBlock1 : {
+        position: 'absolute',
+
+
+        backgroundColor: 'white',
+        color: 'white',
+        bottom: '20px',
+        left: '20px'
+    },
 };
+
+
 
 const calculateUrl2 = (itemPictureProp) => {
     return (`https://picsum.photos/${itemPictureProp.width}/${itemPictureProp.height}?image=${itemPictureProp.id}`);
