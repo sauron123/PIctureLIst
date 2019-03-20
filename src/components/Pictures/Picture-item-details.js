@@ -10,7 +10,7 @@ import selectImageById from '../../store/selectors/selectImageById';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import StarRatingComponent from 'react-star-rating-component';
-
+import Rating from '../ui/rating';
 
 
 class PictureItemDetail extends Component {
@@ -24,6 +24,10 @@ class PictureItemDetail extends Component {
 
     onStarClick(nextValue, prevValue, name) {
         this.props.ChangeRating(this.props.fieldData.pictures, this.props.match.params.id, nextValue);
+    };
+
+    onStarChangeRate = (nextRate) => {
+        this.props.ChangeRating(this.props.fieldData.pictures, this.props.match.params.id, nextRate);
     };
 
     goBack(){
@@ -49,13 +53,15 @@ class PictureItemDetail extends Component {
 
                           <SubHeading>{author}</SubHeading>
 
-
+                         
        < div className={css`position: relative;`} >
             <img className={css(styles.imgStyle)}
                  src={calculateUrl2(this.props.getPictureDetail)}
                  alt ="" />
 
            <div className={css(styles.favBlock)} >
+           <Rating rating={(typeof this.props.getPictureDetail.rating == "undefined" ? 1 : this.props.getPictureDetail.rating)}
+                            ClickChangeRate = {this.onStarChangeRate} />
                <StarRatingComponent
                    name="rate1"
                    starCount={5}
