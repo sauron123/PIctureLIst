@@ -68,7 +68,8 @@ class PictureItemDetail extends Component {
 
                    <FontAwesomeIcon  onClick={() => {this.props.ChangeFavori(this.props.fieldData.pictures, this.props.match.params.id)}}
                                      icon={faHeart}
-                                     color={(typeof this.props.getPictureDetail.valueSelected == "undefined" ? 'black' : this.props.getPictureDetail.valueSelected)} size="lg" />
+                                     color={ this.props.getPictureDetail.valueSelected == false ? 'black' : 'red' }
+                                     size="lg" />
 
 
            </div>

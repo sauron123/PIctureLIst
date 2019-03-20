@@ -9,7 +9,7 @@ export const postsFetchData = () => dispatch => {
     return   getImage().then(res => {
         const pictures = res.data.slice(1,LIMIT_LIST).map((item) => {
           let elementItem = {...item}
-          elementItem.valueSelected = 'black';
+          elementItem.valueSelected = false;
           elementItem.rating = 1;
           return elementItem;
         });   
@@ -27,7 +27,7 @@ export const postsFetchData = () => dispatch => {
           let elementPicture = {...element}
           if (elementPicture.id == id)
           {
-            elementPicture.valueSelected = (elementPicture.valueSelected ==='red') ? 'black' : 'red'
+            elementPicture.valueSelected = (elementPicture.valueSelected === false) ? true : false
             return elementPicture;
           }
           return elementPicture;

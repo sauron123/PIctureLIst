@@ -37,7 +37,7 @@ const  PictureItem = (props) => {
                 <StarRatingComponent
                     name="rate1"
                     starCount={5}
-                    value={(typeof props.itemPicture.rating == "undefined" ? 0 : props.itemPicture.rating)}
+                    value={(props.itemPicture.rating)}
 
                 />
                 </div>
@@ -45,7 +45,8 @@ const  PictureItem = (props) => {
  <div className={css(favBlock1)} >
                 <FontAwesomeIcon
                     icon={faHeart}
-                    color={(typeof props.itemPicture.valueSelected == "undefined" ? 'black' : props.itemPicture.valueSelected)} size="md" />
+                    color={ props.itemPicture.valueSelected === true ? 'red' : 'black' }
+                    size="md" />
 
               </div> </span>  :''
     );
