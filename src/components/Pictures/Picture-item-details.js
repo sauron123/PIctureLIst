@@ -4,7 +4,7 @@ import Heading from "../text/Heading";
 import SubHeading from "../text/SubHeading";
 
 import { connect } from 'react-redux';
-import { postsFetchData } from '../../store/actions/data_action';
+import { postsFetchData, ChangeFavori, ChangeRating } from '../../store/actions/data_action';
 import selectImageById from '../../store/selectors/selectImageById';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,40 +15,22 @@ import StarRatingComponent from 'react-star-rating-component';
 
 class PictureItemDetail extends Component {
 
-state = {
-    valueSelected : 'black',
-    rating: 1
-};
+
     componentDidMount() {
+
+        if(this.props.fieldData.pictures.length === 0)
         this.props.postsFetchData();
     }
 
     onStarClick(nextValue, prevValue, name) {
-        console.log('rating',this.state.rating)
-        this.setState({rating: nextValue});
-
+        this.props.ChangeRating(this.props.fieldData.pictures, this.props.match.params.id, nextValue);
     };
 
+    goBack(){
+        this.props.history.push("/");
+    }
+
     render() {
-
-
-    const { rating } = this.state;
-
-console.log( 'console',this.state.valueSelected);
-
-        function handleClick() {
-
-
-                this.setState((state) => {
-                    if ( this.state.valueSelected !=='red ') {
-                        return {valueSelected: 'red'};
-                    }
-            });
-        }
-
-
-
-
 
 
         if (!this.props.getPictureDetail) return null; //spinner loading
@@ -61,7 +43,7 @@ console.log( 'console',this.state.valueSelected);
 
         <div className={css(styles.pictureWrapper)}>
             <div className={css(styles.card)} >
-
+                        <button type="button" onClick={this.goBack.bind(this)}>Return</button>
                       <Heading>Author : </Heading>
 
                           <SubHeading>{author}</SubHeading>
@@ -74,16 +56,16 @@ console.log( 'console',this.state.valueSelected);
 
          <div className={css(styles.container)} >
              <div className={css(styles.organize1)} >
-                <FontAwesomeIcon  onClick={handleClick.bind(this)}
+                <FontAwesomeIcon  onClick={() => {this.props.ChangeFavori(this.props.fieldData.pictures, this.props.match.params.id)}}
                                   icon={faHeart}
-                                  color={ this.state.valueSelected} size="lg" />
+                                  color={(typeof this.props.getPictureDetail.valueSelected == "undefined" ? 'black' : this.props.getPictureDetail.valueSelected)} size="lg" />
              </div>
 
            <div className={css(styles.organize2)} >
                 <StarRatingComponent
                     name="rate1"
                     starCount={5}
-                    value={rating}
+                    value={(typeof this.props.getPictureDetail.rating == "undefined" ? 1 : this.props.getPictureDetail.rating)}
                     onStarClick={this.onStarClick.bind(this)}
                 />
            </div>
@@ -114,7 +96,7 @@ const mapStateToProps = (state, ownProps) => {
 //     }
 // }
 
-export default connect(mapStateToProps, {postsFetchData})(PictureItemDetail);
+export default connect(mapStateToProps, {postsFetchData, ChangeFavori, ChangeRating})(PictureItemDetail);
 const styles = {
     pictureWrapper: {
         marginLeft: '10px 50px 10px 150px',

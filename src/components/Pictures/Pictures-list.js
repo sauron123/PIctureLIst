@@ -11,7 +11,7 @@ class PicturesList extends Component {
 
 
     componentDidMount() {
-
+       if(this.props.fieldData.pictures.length === 0)
        this.props.postsFetchData();
     }
 

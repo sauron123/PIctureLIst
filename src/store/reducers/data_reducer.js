@@ -14,7 +14,16 @@ const dataReducer = (state = initialState, action) => {
                 ...state,
                 pictures : action.payload
             };
-
+        case actionTypes.CHANGE_FAVORI:
+        return {
+            ...state,
+            pictures : action.payload
+        };
+        case actionTypes.CHANGE_RATING:
+        return {
+            ...state,
+            pictures : action.payload
+        };
         default:
             return state;
     }
