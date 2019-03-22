@@ -1,22 +1,15 @@
-import React, { Component } from 'react';  // modify to a component
+import React  from 'react';  // modify to a component
 
 
-class Rating extends Component {
+const Rating = (props) => {
 
 
-      state= {
-        rating: this.props.rating || null,
-      };
-
-
-
-    render() {
       let stars = [];
 
       for(let i = 0; i < 5; i++) {
         let klass = 'star-rating__star';
 
-        if (this.props.rating >i && this.props.rating != null) {
+        if (props.rating >i && props.rating != null) {
           klass += ' is-selected';
         }
 
@@ -24,7 +17,7 @@ class Rating extends Component {
 //use map instead of push
           <label
             className={klass}
-            onClick={() => {this.props.ClickChangeRate(i+1)}}
+            onClick={() => {props.ClickChangeRate(i+1)}}
             >
             ★
           </label>
@@ -36,9 +29,8 @@ class Rating extends Component {
         <div>
           {stars}
         </div>
-      );
-    }
-  }
+      )};
+
   export default (Rating);
 
 
