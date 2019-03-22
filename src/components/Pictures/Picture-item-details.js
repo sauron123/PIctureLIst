@@ -69,7 +69,7 @@ class PictureItemDetail extends Component {
             <div  className={css(styles.container2)}>
                  <FontAwesomeIcon  onClick={() => {this.props.ChangeFavori(this.props.fieldData.pictures, this.props.match.params.id)}}
                                    icon={faHeart}
-                                   color={ this.props.getPictureDetail.valueSelected === false ? 'black' : 'red' }
+                                   color={ this.props.getPictureDetail.valueSelected === false ? 'grey' : 'red' }
                                    size="lg" />
            </div>
             </div>
@@ -203,6 +203,7 @@ const styles = {
         position: 'relative',
         textAlign: 'center',
         color: 'white'
+
     },
     container2: {
     position: 'absolute',
