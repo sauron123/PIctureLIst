@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { css } from 'emotion';
 import Heading from "../text/Heading";
 import SubHeading from "../text/SubHeading";
+import calculateUrl from '../../utils/calculUrl';
+
 
 import { connect } from 'react-redux';
 import { postsFetchData, ChangeFavori, ChangeRating } from '../../store/actions/data_action';
@@ -9,8 +11,7 @@ import selectImageById from '../../store/selectors/selectImageById';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import StarRatingComponent from 'react-star-rating-component';
-import Rating from '../ui/rating';
+import Rating from '../ui/rating2';
 
 
 class PictureItemDetail extends Component {
@@ -22,9 +23,7 @@ class PictureItemDetail extends Component {
         this.props.postsFetchData();
     }
 
-    onStarClick(nextValue, prevValue, name) {
-        this.props.ChangeRating(this.props.fieldData.pictures, this.props.match.params.id, nextValue);
-    };
+
 
     onStarChangeRate = (nextRate) => {
         this.props.ChangeRating(this.props.fieldData.pictures, this.props.match.params.id, nextRate);
@@ -45,7 +44,8 @@ class PictureItemDetail extends Component {
         let author = this.props.getPictureDetail.author ;
     return (
 
-        <div className={css(styles.pictureWrapper)}>
+        <span className={css(styles.pictureWrapper)}>
+
             <div className={css(styles.container)} >
             <div className={css(styles.card)} >
                         <button type="button" onClick={this.goBack.bind(this)}>Return</button>
@@ -54,36 +54,30 @@ class PictureItemDetail extends Component {
                           <SubHeading>{author}</SubHeading>
 
                          
-       < div className={css`position: relative;`} >
+       <div className={css`position: relative;`} >
             <img className={css(styles.imgStyle)}
-                 src={calculateUrl2(this.props.getPictureDetail)}
+                 src={calculateUrl(this.props.getPictureDetail)}
                  alt ="" />
-
            <div className={css(styles.favBlock)} >
-           <Rating rating={(typeof this.props.getPictureDetail.rating == "undefined" ? 1 : this.props.getPictureDetail.rating)}
-                            ClickChangeRate = {this.onStarChangeRate} />
-               <StarRatingComponent
-                   name="rate1"
-                   starCount={5}
-                   value={(typeof this.props.getPictureDetail.rating == "undefined" ? 1 : this.props.getPictureDetail.rating)}
-                   onStarClick={this.onStarClick.bind(this)}
-               />
+                 <Rating
+                     rating={(typeof this.props.getPictureDetail.rating == "undefined" ? 0 : this.props.getPictureDetail.rating)}
+                     ClickChangeRate = {this.onStarChangeRate}
+                 />
 
            </div>
+
            <div className={css(styles.favBlock1)} >
-
-                   <FontAwesomeIcon  onClick={() => {this.props.ChangeFavori(this.props.fieldData.pictures, this.props.match.params.id)}}
-                                     icon={faHeart}
-                                     color={ this.props.getPictureDetail.valueSelected == false ? 'black' : 'red' }
-                                     size="lg" />
-
-
+                 <FontAwesomeIcon  onClick={() => {this.props.ChangeFavori(this.props.fieldData.pictures, this.props.match.params.id)}}
+                                   icon={faHeart}
+                                   color={ this.props.getPictureDetail.valueSelected === false ? 'black' : 'red' }
+                                   size="lg" />
            </div>
+            </div>
+            </div>
+         </div>
+        </span>
 
-         </div>
-         </div>
-        </div>
-        </div>
+
 
     );
     }
@@ -107,6 +101,63 @@ const mapStateToProps = (state, ownProps) => {
 // }
 
 export default connect(mapStateToProps, {postsFetchData, ChangeFavori, ChangeRating})(PictureItemDetail);
+
+
+// const styles = {
+//     pictureWrapper: {
+//         marginLeft: '10px 50px 10px 150px',
+//         marginRight: '10px 50px 10px 150px',
+//         padding: '10px 50px 10px 150px'
+//     },
+//     infoWrapper: {
+//         margin: '10px 50px 10px 150px',
+//         padding: '10px 50px 10px 150px'
+//     },
+//     columnStyle: {
+//         flex: '33.33%',
+//         padding: '5px',
+//     },
+//     imgStyle: {
+//         display: 'block',
+//         marginLeft: 'auto',
+//         marginRight: 'auto',
+//         width: '30%',
+//         maxWidth: '30%'
+//     },
+//     card: {
+//         boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+//         transition: '0.3'
+//     },
+//     container: {
+//         position: 'relative', //flex
+//     },
+//     favBlock : {
+//         position: 'grid',
+//         bottom: '20px',
+//         right: '20px',
+//         backgroundColor: 'white',
+//         color: 'white',
+//         paddingLeft: '20px',
+//         paddingRight: '20px',
+//         float: 'left',
+//         width: '20%',
+//         fontSize: 'calc(14px + (40 - 5) * ((100vw - 300px) / (1600 - 300)))'
+//     },
+//     favBlock1 : {
+//         position: 'grid',
+//         backgroundColor: 'white',
+//         color: 'white',
+//         bottom: '20px',
+//         left: '20px',
+//         float: 'left',
+//         width: '20%',
+//         fontSize: 'calc(14px + (40 - 5) * ((100vw - 300px) / (1600 - 300)))'
+//     },
+//
+// };
+
+
+
 const styles = {
     pictureWrapper: {
         marginLeft: '10px 50px 10px 150px',
@@ -126,7 +177,7 @@ const styles = {
         marginLeft: 'auto',
         marginRight: 'auto',
         width: '50%',
-        maxWidth: '50%'
+        maxWidth: '100%'
     },
     card: {
         boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
@@ -134,41 +185,19 @@ const styles = {
     },
     container: {
         position: 'relative'
-    },
-    organize1: {
-        position: 'absolute',
-        bottom: '8px',
-        right: '16px',
-        fontSize: 'calc(14px + (40 - 5) * ((100vw - 300px) / (1600 - 300)))'
-    },
-    organize2: {
-        position: 'absolute',
-        bottom: '8px',
-        left: '16px',
-        fontSize: 'calc(14px + (40 - 5) * ((100vw - 300px) / (1600 - 300)))'
+
     },
     favBlock : {
         position: 'absolute',
         bottom: '20px',
         right: '20px',
-        backgroundColor: 'white',
-        color: 'white',
         paddingLeft: '20px',
         paddingRight: '20px'
     },
     favBlock1 : {
         position: 'absolute',
-
-
-        backgroundColor: 'white',
-        color: 'white',
         bottom: '20px',
         left: '20px'
     },
 };
 
-
-
-const calculateUrl2 = (itemPictureProp) => {
-    return (`https://picsum.photos/${itemPictureProp.width}/${itemPictureProp.height}?image=${itemPictureProp.id}`);
-}; // move and export

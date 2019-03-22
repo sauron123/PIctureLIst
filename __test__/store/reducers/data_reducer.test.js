@@ -1,22 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import dataReducer from "./store/reducers/data_reducer";
-
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+import dataReducer from '../../../src/store/reducers/data_reducer'
 
 describe('post_data reducer', () => {
     it('should return the initial state', () => {
-        expect(dataReducer(undefined, {})).toEqual(
+        expect(dataReducer(undefined, {})).toEqual([
             {
                 pictures: [],
             }
-        )
+        ])
     })
 });
 
@@ -193,7 +183,6 @@ it('sets the rate to specific value', () => {
 //
 //
 //
-
 
 
 

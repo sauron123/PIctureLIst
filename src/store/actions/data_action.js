@@ -1,7 +1,7 @@
 import * as types from "./actionTypes";
 import getImage from '../../utils/utils'
 import {LIMIT_LIST} from '../../constants';
-import selectImageById from '../../store/selectors/selectImageById';
+
 
 
 export const postsFetchData = () => dispatch => {
@@ -10,7 +10,7 @@ export const postsFetchData = () => dispatch => {
         const pictures = res.data.slice(1,LIMIT_LIST).map((item) => {
           let elementItem = {...item}
           elementItem.valueSelected = false;
-          elementItem.rating = 1;
+          elementItem.rating = 0;
           return elementItem;
         });   
          
@@ -22,13 +22,12 @@ export const postsFetchData = () => dispatch => {
 
         // let newPicture = {...selectImageById(pictures, id)}
         // newPicture.valueSelected = (newPicture.valueSelected ==='red') ? 'black' : 'red'
-
-        let picturesList = pictures.map((element) => {
-          let elementPicture = {...element}
+            if (id === undefined) return null;
+        const picturesList = pictures.map((element) => {
+          const elementPicture = {...element}
           if (elementPicture.id == id)
           {
-            elementPicture.valueSelected = (elementPicture.valueSelected === false) ? true : false
-            return elementPicture;
+            elementPicture.valueSelected = !elementPicture.valueSelected;
           }
           return elementPicture;
 
@@ -41,16 +40,17 @@ export const postsFetchData = () => dispatch => {
 
   export const ChangeRating = (pictures, id, valueRating) => dispatch => {
 
-    let picturesList = pictures.map((element) => {
-      let elementPicture = {...element}
-      if (elementPicture.id == id)
-      {
-        elementPicture.rating = valueRating;
-        return elementPicture;
-      }
-      return elementPicture;
+      if (id === undefined) return null;
 
-    })
+          const picturesList = pictures.map((element) => {
+              const elementPicture = {...element}
+              if (elementPicture.id == id) {
+                  elementPicture.rating = valueRating;
+              }
+              return elementPicture;
+
+            });
+
        
     dispatch({ type: types.CHANGE_RATING, payload: picturesList })
 

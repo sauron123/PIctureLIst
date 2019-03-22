@@ -1,16 +1,14 @@
 import React from 'react';
 import { css } from 'emotion';
-import { PICSUM_URL } from '../../constants';
+import calculateUrl from '../../utils/calculUrl';
 import { withRouter } from 'react-router-dom';
-import StarRatingComponent from "react-star-rating-component";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart} from "@fortawesome/free-solid-svg-icons";
+import Rating from '../ui/rating2';
 
 
 
-const calculateUrl = (itemPictureProp) => {
-    return (`${PICSUM_URL}/ ${itemPictureProp.width} / ${itemPictureProp.height} ?image=  ${itemPictureProp.id}`);
-}
+
 
 const goToDetailPicture = (itemPictureProp, history) => {
   history.push({
@@ -29,17 +27,14 @@ const  PictureItem = (props) => {
             <span className={css(container)}>
                 <img
                     className={css(styleImg)}
-                    alt={props.itemPicture.valueSelected}
+                    alt=""
                     src={calculateUrl(props.itemPicture)}
                     onClick = {() =>{
                         goToDetailPicture(props.itemPicture, history )}} />
                 <div className={css(favBlock)} >
-                <StarRatingComponent
-                    name="rate1"
-                    starCount={5}
-                    value={(props.itemPicture.rating)}
 
-                />
+                     <Rating classeName ={css(star)} rating={(props.itemPicture.rating)}
+                           />
                 </div>
 
  <div className={css(favBlock1)} >
@@ -76,19 +71,17 @@ const favBlock =  {
     position: 'absolute',
     bottom: '20px',
     right: '20px',
-    backgroundColor: 'white',
-    color: 'white',
     paddingLeft: '20px',
     paddingRight: '20px'
 };
 
 const favBlock1 =  {
     position: 'absolute',
-
-
-    backgroundColor: 'white',
-    color: 'white',
     bottom: '20px',
     left: '20px'
 };
 
+const star = {
+
+    size: '20px'
+}
