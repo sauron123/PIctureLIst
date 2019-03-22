@@ -43,9 +43,7 @@ class PictureItemDetail extends Component {
     // info picture
         let author = this.props.getPictureDetail.author ;
     return (
-
         <span className={css(styles.pictureWrapper)}>
-
             <div className={css(styles.container)} >
             <div className={css(styles.card)} >
                         <button type="button" onClick={this.goBack.bind(this)}>Return</button>
@@ -53,20 +51,22 @@ class PictureItemDetail extends Component {
 
                           <SubHeading>{author}</SubHeading>
 
-                         
-       <div className={css`position: relative;`} >
+       <div className={css(styles.container1)}>
             <img className={css(styles.imgStyle)}
                  src={calculateUrl(this.props.getPictureDetail)}
                  alt ="" />
-           <div className={css(styles.favBlock)} >
+
+           <div  className={css(styles.container)}>
+
                  <Rating
                      rating={(typeof this.props.getPictureDetail.rating == "undefined" ? 0 : this.props.getPictureDetail.rating)}
                      ClickChangeRate = {this.onStarChangeRate}
                  />
 
            </div>
+            </div>
 
-           <div className={css(styles.favBlock1)} >
+            <div  className={css(styles.container2)}>
                  <FontAwesomeIcon  onClick={() => {this.props.ChangeFavori(this.props.fieldData.pictures, this.props.match.params.id)}}
                                    icon={faHeart}
                                    color={ this.props.getPictureDetail.valueSelected === false ? 'black' : 'red' }
@@ -74,7 +74,7 @@ class PictureItemDetail extends Component {
            </div>
             </div>
             </div>
-         </div>
+
         </span>
 
 
@@ -176,7 +176,7 @@ const styles = {
         display: 'block',
         marginLeft: 'auto',
         marginRight: 'auto',
-        width: '50%',
+        width: '100%',
         maxWidth: '100%'
     },
     card: {
@@ -199,5 +199,31 @@ const styles = {
         bottom: '20px',
         left: '20px'
     },
+    container1: {
+        position: 'relative',
+        textAlign: 'center',
+        color: 'white'
+    },
+    container2: {
+    position: 'absolute',
+    bottom: '30px',
+    left: '16px'
+    },
+over1 : {
+    position: 'relative',
+    top: '0',
+    left: '0'
+},
+// over2 : {
+//     position: 'absolute',
+//     top: '60px',
+//     left: '80px'
+// },
+//    divv : {
+//         position: 'relative',
+//         left: '0',
+//         top: '0'
+// }
+
 };
 
