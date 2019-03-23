@@ -3,7 +3,7 @@ import { css } from 'emotion';
 import Heading from "../text/Heading";
 import SubHeading from "../text/SubHeading";
 import calculateUrl from '../../utils/calculUrl';
-
+import ingredients from './Pictures-inngredients';
 
 import { connect } from 'react-redux';
 import { postsFetchData, ChangeFavori, ChangeRating } from '../../store/actions/data_action';
@@ -52,6 +52,7 @@ class PictureItemDetail extends Component {
                           <SubHeading>{author}</SubHeading>
 
        <div className={css(styles.container1)}>
+           <h1 className={css(h1)}> recipe name </h1>
             <img className={css(styles.imgStyle)}
                  src={calculateUrl(this.props.getPictureDetail)}
                  alt ="" />
@@ -77,10 +78,29 @@ class PictureItemDetail extends Component {
                         { this.props.getPictureDetail.desciption  }
                     </p>
                 </div>
+
+
             </div>
             </div>
 
+<div className={css(card)} >
+
+            <div className={css(container)} >
+
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>{this.props.getPictureDetail.ingredients[0]}</p></div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 2</p></div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 3</p></div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 4</p></div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 5</p></div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 6</p> </div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 7</p> </div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 7</p> </div>
+
+            </div>
+</div>
+
         </span>
+
 
 
 
@@ -165,6 +185,7 @@ export default connect(mapStateToProps, {postsFetchData, ChangeFavori, ChangeRat
 
 const styles = {
     pictureWrapper: {
+        overflow: 'auto',
         marginLeft: '10px 50px 10px 150px',
         marginRight: '10px 50px 10px 150px',
         padding: '10px 50px 10px 150px'
@@ -182,7 +203,7 @@ const styles = {
         marginLeft: 'auto',
         marginRight: 'auto',
         width: '100%',
-        maxWidth: '100%'
+        maxWidth: '100%',
     },
     card: {
         boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
@@ -236,3 +257,34 @@ over1 : {
 
 };
 
+const container =  {
+    display : 'grid',
+    gridTemplateColumns : '200px 500px ',
+    gridGap : '20px',
+    textAlign : 'center'
+
+
+};
+
+const card = {
+    boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+    transition: '0.3',
+    marginLeft: '20px',
+    marginRight: '20px'
+
+};
+const styleImg  = {
+
+    borderRadius: '50%',
+    width: '50',
+    height: '50px',
+    cursor: 'pointer',
+
+};
+
+const h1 =  {
+    position: 'absolute',
+    top: '200px',
+    left: '0',
+    width: '100%'
+}

@@ -32,8 +32,10 @@ class PicturesList extends Component {
                 <div  className={css`display: flex;`}>
                     <div className={css(styles.columnStyle)}>
                         {pictureListItems}
-                    </div>
                 </div>
+                </div>
+
+
             </React.Fragment>
         );
     }
