@@ -72,6 +72,11 @@ class PictureItemDetail extends Component {
                                    color={ this.props.getPictureDetail.valueSelected === false ? 'grey' : 'red' }
                                    size="lg" />
            </div>
+                <div className={css(styles.card)} >
+                    <p>
+                        { this.props.getPictureDetail.desciption  }
+                    </p>
+                </div>
             </div>
             </div>
 
@@ -181,7 +186,10 @@ const styles = {
     },
     card: {
         boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-        transition: '0.3'
+        transition: '0.3',
+        marginLeft: '20px',
+        marginRight: '20px'
+
     },
     container: {
         position: 'relative'
@@ -207,8 +215,8 @@ const styles = {
     },
     container2: {
     position: 'absolute',
-    bottom: '30px',
-    left: '16px'
+    bottom: '100px',
+    left: '25px'
     },
 over1 : {
     position: 'relative',
