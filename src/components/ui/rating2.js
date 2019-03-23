@@ -17,9 +17,8 @@ const Rating = (props) => {
 //use map instead of push
           <label
             className={klass}
-            onClick={() => {props.ClickChangeRate(i+1)}}
-            key={i}
-            >
+            onClick={() => {if (props.ClickChangeRate) props.ClickChangeRate(i+1)}}
+            key={'Rating' + i}>
             ★
           </label>
 
@@ -33,5 +32,7 @@ const Rating = (props) => {
       )};
 
   export default (Rating);
+
+
 
 
