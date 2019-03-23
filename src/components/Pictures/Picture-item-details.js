@@ -259,30 +259,6 @@ over1 : {
 
 };
 
-const container =  {
-    display : 'grid',
-    gridTemplateColumns : '200px 500px ',
-    gridGap : '20px',
-    textAlign : 'center'
-
-
-};
-
-const card = {
-    boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-    transition: '0.3',
-    marginLeft: '20px',
-    marginRight: '20px'
-
-};
-const styleImg  = {
-
-    borderRadius: '50%',
-    width: '50',
-    height: '50px',
-    cursor: 'pointer',
-
-};
 
 const h1 =  {
     position: 'absolute',

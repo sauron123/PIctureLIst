@@ -1,14 +1,16 @@
 import * as types from "./actionTypes";
 import getImage from '../../utils/utils'
-import {LIMIT_LIST} from '../../constants';
-import React from "react";
+// import {LIMIT_LIST} from '../../constants';
+// import React from "react";
 
 
 
 export const postsFetchData = () => dispatch => {
   
     return   getImage().then(res => {
-        const pictures = res.data.slice(1,LIMIT_LIST).map((item) => {
+
+      // const pictures = res.data.slice(1,LIMIT_LIST).map((item) => {
+      const pictures = res.data.map((item) => {
           let elementItem = {...item}
           elementItem.valueSelected = false;
           elementItem.rating = 0;
@@ -28,7 +30,7 @@ export const postsFetchData = () => dispatch => {
             if (id === undefined) return null;
         const picturesList = pictures.map((element) => {
           const elementPicture = {...element}
-          if (elementPicture.id == id)
+          if (elementPicture.id === id)
           {
             elementPicture.valueSelected = !elementPicture.valueSelected;
           }
@@ -47,7 +49,7 @@ export const postsFetchData = () => dispatch => {
 
           const picturesList = pictures.map((element) => {
               const elementPicture = {...element}
-              if (elementPicture.id == id) {
+              if (elementPicture.id === id) {
                   elementPicture.rating = valueRating;
               }
               return elementPicture;

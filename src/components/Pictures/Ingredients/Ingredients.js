@@ -42,12 +42,5 @@ const card = {
     marginRight: '20px'
 
 };
-const styleImg  = {
 
-    borderRadius: '50%',
-    width: '50',
-    height: '50px',
-    cursor: 'pointer',
-
-};
 

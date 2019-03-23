@@ -6,7 +6,7 @@ const Ingredient =(props) => {
     return (
 
                 <div >  
-                    <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" />
+                    <img className={css(styleImg)}  alt='' src="https://source.unsplash.com/collection/1163637/480x480" />
                     <p>{props.ingredientItem}</p>
                  </div>
 
