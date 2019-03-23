@@ -3,7 +3,7 @@ import { css } from 'emotion';
 import Heading from "../text/Heading";
 import SubHeading from "../text/SubHeading";
 import calculateUrl from '../../utils/calculUrl';
-import ingredients from './Pictures-inngredients';
+
 
 import { connect } from 'react-redux';
 import { postsFetchData, ChangeFavori, ChangeRating } from '../../store/actions/data_action';
@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import Rating from '../ui/rating2';
 
-
+import Ingredients from './Ingredients/Ingredients'
 class PictureItemDetail extends Component {
 
 
@@ -83,7 +83,9 @@ class PictureItemDetail extends Component {
             </div>
             </div>
 
-<div className={css(card)} >
+    
+ <Ingredients ingredients={this.props.getPictureDetail.ingredients}/>
+{/* <div className={css(card)} >
 
             <div className={css(container)} >
 
@@ -97,7 +99,7 @@ class PictureItemDetail extends Component {
                 <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 7</p> </div>
 
             </div>
-</div>
+</div> */}
 
         </span>
 
