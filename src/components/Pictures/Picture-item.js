@@ -33,7 +33,7 @@ const  PictureItem = (props) => {
                         goToDetailPicture(props.itemPicture, history )}} />
                 <div className={css(favBlock)} >
 
-                     <Rating classeName ={css(star)} rating={(props.itemPicture.rating)}
+                     <Rating  classeName ={css(star)} rating={(props.itemPicture.rating)}
                            />
                 </div>
 
@@ -41,7 +41,7 @@ const  PictureItem = (props) => {
                 <FontAwesomeIcon
                     icon={faHeart}
                     color={ props.itemPicture.valueSelected === true ? 'red' : 'black' }
-                    size="md" />
+                    size="sm" />
 
               </div> </span>  :''
     );

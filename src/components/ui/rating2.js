@@ -18,6 +18,7 @@ const Rating = (props) => {
           <label
             className={klass}
             onClick={() => {props.ClickChangeRate(i+1)}}
+            key={i}
             >
             ★
           </label>
