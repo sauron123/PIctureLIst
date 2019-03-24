@@ -14,6 +14,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import Rating from '../ui/rating2';
 
 import Ingredients from './Ingredients/Ingredients'
+import Helper from '../ui/helper';
 class PictureItemDetail extends Component {
 
 
@@ -49,8 +50,13 @@ class PictureItemDetail extends Component {
                         <button type="button" onClick={this.goBack.bind(this)}>Return</button>
                       <Heading>Author : </Heading>
 
-                          <SubHeading>{author}</SubHeading>
-
+                          <SubHeading>
+                          <Helper text={author}
+			            	helper={<p>This is the author name</p>} /> 
+                          </SubHeading>
+                 
+                          
+                         
        <div className={css(styles.container1)}>
            <h1 className={css(h1)}> recipe name </h1>
             <img className={css(styles.imgStyle)}
