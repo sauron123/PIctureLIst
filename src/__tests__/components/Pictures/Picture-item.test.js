@@ -1,4 +1,4 @@
-import dataReducer from "../../../src/store/reducers/data_reducer";
+import dataReducer from "../../../store/reducers/data_reducer";
 
 it('should load pictures post ', () => {
     const action = {

@@ -17,10 +17,16 @@ const Rating = (props) => {
         stars.push(
 //use map instead of push
           <label
+
             className={css(klass)}
             onClick={() => {props.ClickChangeRate(i+1)}}
             key={i}
             >
+
+            className={klass}
+            onClick={() => {if (props.ClickChangeRate) props.ClickChangeRate(i+1)}}
+            key={'Rating' + i}>
+
             ★
           </label>
 
@@ -58,4 +64,7 @@ const Rating = (props) => {
       color: '#FFD700',
       transition: 'color .2s ease-out'
   };
+
+
+
 
