@@ -36,8 +36,12 @@ class PictureItemDetail extends Component {
 
     render() {
 
+        // let x = window.matchMedia("(max-width: 700px)")
+        // myFunction(x) // Call listener function at run time
+        // x.addListener(myFunction) // Attach listener function on state changes
 
-        if (!this.props.getPictureDetail) return null; //spinner loading
+
+        if (!this.props.getPictureDetail)  return null; //spinner loading
 
 
       
@@ -64,7 +68,6 @@ class PictureItemDetail extends Component {
                  alt ="" />
 
            <div  className={css(styles.container)}>
-
                  <Rating
                      rating={(typeof this.props.getPictureDetail.rating == "undefined" ? 0 : this.props.getPictureDetail.rating)}
                      ClickChangeRate = {this.onStarChangeRate}
@@ -73,12 +76,16 @@ class PictureItemDetail extends Component {
            </div>
             </div>
 
-            <div  className={css(styles.container2)}>
+
+                <div className="img-wrapper">
+
+
                  <FontAwesomeIcon  onClick={() => {this.props.ChangeFavori(this.props.fieldData.pictures, this.props.match.params.id)}}
                                    icon={faHeart}
                                    color={ this.props.getPictureDetail.valueSelected === false ? 'grey' : 'red' }
                                    size="lg" />
-           </div>
+                </div>
+
                 <div className={css(styles.card)} >
                     <p>
                         { this.props.getPictureDetail.desciption  }
@@ -87,9 +94,11 @@ class PictureItemDetail extends Component {
 
 
             </div>
-            </div>
 
-    
+
+
+<div>
+
  <Ingredients ingredients={this.props.getPictureDetail.ingredients}/>
 {/* <div className={css(card)} >
 
@@ -107,7 +116,11 @@ class PictureItemDetail extends Component {
             </div>
 </div> */}
 
-        </span>
+</div>
+
+</div>
+
+         </span>
 
 
 
@@ -265,10 +278,28 @@ over1 : {
 
 };
 
-
+// carefull on mobile it's showing on a wrong place
 const h1 =  {
     position: 'absolute',
-    top: '200px',
+    top: '20%',
     left: '0',
-    width: '100%'
+    width: '100%',
+    fontSize: '40px'
 }
+
+// @media only screen and (max-width: 767px) {
+//
+//     h1 {
+//         font-size: 3em;
+//     }
+
+
+//
+//
+// function myFunction(x) {
+//     if (x.matches) { // If media query matches
+//         document.body.style.backgroundColor = "yellow";
+//     } else {
+//         document.body.style.backgroundColor = "pink";
+//     }
+//}

@@ -252,6 +252,48 @@
       -webkit-flex: 1;
           -ms-flex: 1;
               flex: 1; }
-  
+
+
+/*===== heart icon   ======*/
+.img-wrapper {
+    position: relative;
+}
+
+.img-wrapper:before {
+    display: block;
+    content: ""; /* you can have a font here for your icons */
+    background-image: url(); /* or you could use a background image */
+    position: absolute;
+    width: icon height;
+    height: icon height;
+    top: XX;
+    left: XX; /* or right */
+    z-index: 1000; /* make sure it sits above your image */
+}
+
+/*=====spinner   ======*/
+
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+}
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+
+
+
+
   
  

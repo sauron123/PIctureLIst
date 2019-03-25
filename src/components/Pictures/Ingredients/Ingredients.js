@@ -11,7 +11,7 @@ render (){
         return <Ingredient key={'Ingredient ' + index} ingredientItem = {ingredientItem} /> ;
     });
    
-    return <div className={css(card)} >
+    return <div className={css(card)}>
 
     <div className={css(container)} >
     
@@ -28,7 +28,7 @@ export default Ingredients;
 
 const container =  {
     display : 'grid',
-    gridTemplateColumns : '200px 500px ',
+    gridTemplateColumns : '150px 150px ',
     gridGap : '20px',
     textAlign : 'center'
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Helper extends React.Component {
+class Helper extends  Component {
     constructor(props) {
         super(props);
         this.state = {

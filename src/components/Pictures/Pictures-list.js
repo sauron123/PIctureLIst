@@ -32,7 +32,7 @@ class PicturesList extends Component {
 
 
     render() {
-        let pictureListItems;;
+        let pictureListItems;
         // Parse List Picutres
         if (this.state.pageOfItems.length>0)
        {  pictureListItems = this.state.pageOfItems.map((item, index) => {

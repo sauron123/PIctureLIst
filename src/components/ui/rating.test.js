@@ -13,7 +13,7 @@ function setup() {
   const props = {
     rating: jest.fn(),
     ClickChangeRate: jest.fn(),
-  }
+  };
 
   const enzymeWrapper = shallow(<Rating {...props} />)
 
@@ -27,10 +27,10 @@ function setup() {
      it('should render self and subcomponents', () => {
        const { enzymeWrapper } = setup()
 
-       expect(enzymeWrapper.find('label').at(0).hasClass('star-rating__star')).toBe(true)
+       expect(enzymeWrapper.find('label').at(0).hasClass('css-hn8do0')).toBe(true)
      })
 
-    it('should call addTodo if length of text is greater than 0', () => {
+    it('should call a colored star  if the rate selected if more than  0', () => {
       const { enzymeWrapper, props } = setup()
       const input = enzymeWrapper.find('label').at(0)
       expect(props.ClickChangeRate.mock.calls.length).toBe(0)
