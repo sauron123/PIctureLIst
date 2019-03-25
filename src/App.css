@@ -259,17 +259,17 @@
     position: relative;
 }
 
-.img-wrapper:before {
-    display: block;
-    content: ""; /* you can have a font here for your icons */
-    background-image: url(); /* or you could use a background image */
-    position: absolute;
-    width: icon height;
-    height: icon height;
-    top: XX;
-    left: XX; /* or right */
-    z-index: 1000; /* make sure it sits above your image */
-}
+/*.img-wrapper:before {*/
+    /*display: block;*/
+    /*content: ""; !* you can have a font here for your icons *!*/
+    /*background-image: url(); !* or you could use a background image *!*/
+    /*position: absolute;*/
+    /*width: icon height;*/
+    /*height: icon height;*/
+    /*top: XX;*/
+    /*left: XX; !* or right *!*/
+    /*z-index: 1000; !* make sure it sits above your image *!*/
+/*}*/
 
 /*=====spinner   ======*/
 
