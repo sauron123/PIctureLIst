@@ -284,7 +284,7 @@ const h1 =  {
     top: '20%',
     left: '0',
     width: '100%',
-    fontSize: '40px'
+    fontSize: '5.9vw'
 }
 
 // @media only screen and (max-width: 767px) {
