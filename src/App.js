@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, 	applyMiddleware, compose } from 'redux';
 import dataReducer from './store/reducers/data_reducer';
 import thunk from 'redux-thunk';
+import NotFound from './components/NotFound/NotFound';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootReducer = combineReducers({
@@ -30,6 +31,9 @@ class App extends Component {
 				}} />
 				<Route exact path="/image/:id" render={(props) => {
 					return <PictureItemDetail {...props}/>
+				}} />
+				<Route render={(props) => {
+					return <NotFound {...props}/>
 				}} />
 			</div>
 		</Router>
