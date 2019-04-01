@@ -32,9 +32,7 @@ class App extends Component {
 				<Route exact path="/image/:id" render={(props) => {
 					return <PictureItemDetail {...props}/>
 				}} />
-				<Route render={(props) => {
-					return <NotFound {...props}/>
-				}} />
+				<Route component={NotFound} />
 			</div>
 		</Router>
 		</Provider>;
