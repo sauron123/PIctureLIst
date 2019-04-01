@@ -49,8 +49,6 @@ class PictureItemDetail extends Component {
         let author = this.props.getPictureDetail.author ;
     return (
         <span className={css(styles.pictureWrapper)}>
-            <div className={css(styles.oneGridRow)} >
-                <div>
             <div className={css(styles.container)} >
             <div className={css(styles.card)} >
                         <button type="button" onClick={this.goBack.bind(this)}>Return</button>
@@ -97,23 +95,28 @@ class PictureItemDetail extends Component {
 
             </div>
 
-            </div>
-                </div>
-<div className={css(container)}>
-                <div>
 
- <Ingredients ingredients={this.props.getPictureDetail.ingredients}/>
-
-
-</div>
 
 <div>
 
  <Ingredients ingredients={this.props.getPictureDetail.ingredients}/>
+{/* <div className={css(card)} >
 
+            <div className={css(container)} >
+
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>{this.props.getPictureDetail.ingredients[0]}</p></div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 2</p></div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 3</p></div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 4</p></div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 5</p></div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 6</p> </div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 7</p> </div>
+                <div >  <img className={css(styleImg)}  src="https://source.unsplash.com/collection/1163637/480x480" /><p>ingredient 7</p> </div>
+
+            </div>
+</div> */}
 
 </div>
-    </div>
 
 </div>
 
@@ -252,11 +255,6 @@ const styles = {
         color: 'white'
 
     },
-    oneGridRow: {
-        display : 'grid',
-        gridTemplateRow : '900px ',
-
-    },
     container2: {
     position: 'absolute',
     bottom: '100px',
@@ -305,13 +303,3 @@ const h1 =  {
 //         document.body.style.backgroundColor = "pink";
 //     }
 //}
-
-
-const container =  {
-    display : 'grid',
-    gridTemplateColumns : '400px 400px ',
-    gridGap : '50px',
-
-
-
-};

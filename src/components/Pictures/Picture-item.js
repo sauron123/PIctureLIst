@@ -40,7 +40,7 @@ const  PictureItem = (props) => {
  <div className={css(favBlock1)} >
                 <FontAwesomeIcon
                     icon={faHeart}
-                    color={ props.itemPicture.valueSelected === true ? 'red' : 'grey' }
+                    color={ props.itemPicture.valueSelected === true ? 'red' : 'black' }
                     size="sm" />
 
               </div> </span>  :''
